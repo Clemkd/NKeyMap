@@ -30,11 +30,12 @@ nKeyMap.get('f');	 // === { myProp1: 52, myProp2: true }
 # Functions
 ## get
 Get your stored value thanks to one of the keys you had specified when you called the 'set' function
-### Params
-*string* **key** : One of the keys that is referred to your stored value
+
+> *string* **key** : One of the keys that is referred to your stored value
 
 ## set
 Push a new value into the map with some keys to access it later
-### Params
-*Array*<*string*> **keys** : Array of keys that will allow you to access to your value later
-*Object* **value** : Value you want store into map
+
+> *Array*<*string*> **keys** : Array of keys that will allow you to access to your value later
+
+> *Object* **value** : Value you want store into map
