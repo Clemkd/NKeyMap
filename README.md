@@ -8,8 +8,8 @@ NKeyMap do not **duplicate values** and allows you to **quick access** your stor
 // Require librairy
 const  NKeyMap  =  require('nkeymap');
 
-// Instanciate map with limit of elements
-const  nKeyMap  =  new  NKeyMap(5);
+// Instanciate map
+const  nKeyMap  =  new  NKeyMap();
 
 // Push value with multiple keys
 nKeyMap.set(['a', 'b', 'c'], 12); 
@@ -17,24 +17,47 @@ nKeyMap.set(['d'], 'myStoredString');
 nKeyMap.set(['key1', 'f'], { myProp1: 52, myProp2: true });
 
 // Obtain stored value thanks to keys
-nKeyMap.get('a'); // === 12
-nKeyMap.get('b'); // === 12
-nKeyMap.get('c'); // === 12
+nKeyMap.get('a');       // === 12
+nKeyMap.get('b');       // === 12
+nKeyMap.get('c');       // === 12
 
-nKeyMap.get('d'); // === 'myStoredString'
+nKeyMap.get('d');       // === 'myStoredString'
 
-nKeyMap.get('key1'); // === { myProp1: 52, myProp2: true }
-nKeyMap.get('f');	 // === { myProp1: 52, myProp2: true }
+nKeyMap.get('key1');    // === { myProp1: 52, myProp2: true }
+nKeyMap.get('f');       // === { myProp1: 52, myProp2: true }
+
+// Obtain map size
+nKeyMap.size();         // === 3
+
+// Clear map
+nKeyMap.clean();
+
+// Re obtain map size
+nKeyMap.size();         // === 0
 ```
 
 # Functions
+## constructor
+Create a new multi-key map
+
+> *number* **maxElements** *(optional)* : Maximum length of the map. 
+> If the size of the map exceeds the fixed limit, the first added elements are removed from the map (FIFO)
+> By default, the map does not have a defined limit 
+
 ## get
 Get your stored value thanks to one of the keys you had specified when you called the 'set' function
-### Params
-*string* **key** : One of the keys that is referred to your stored value
+
+> *string* **key** : One of the keys that is referred to your stored value
 
 ## set
 Push a new value into the map with some keys to access it later
-### Params
-*Array*<*string*> **keys** : Array of keys that will allow you to access to your value later
-*Object* **value** : Value you want store into map
+
+> *Array*<*string*> **keys** : Array of keys that will allow you to access to your value later
+
+> *Object* **value** : Value you want store into map
+
+## clean
+Remove all values from the map
+
+## size
+Get current count of elements available in the map

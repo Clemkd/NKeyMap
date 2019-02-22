@@ -1,7 +1,5 @@
 const _ = require('lodash');
 
-const DEFAULT_MAX_ELEMENTS = 50;
-
 module.exports = class NKeyMap {
 
     /**
@@ -9,9 +7,10 @@ module.exports = class NKeyMap {
      * @param {Number} maxElements Max elements that can be stored into map
      */
     constructor(maxElements) {
-        this.maxElements = _.isNil(maxElements) ? DEFAULT_MAX_ELEMENTS : maxElements;
+        this.maxElements = maxElements;
         this.keysMap = {};
         this.valuesMap = {};
+        this.length = 0;
     }
 
     get(key) {
@@ -36,11 +35,8 @@ module.exports = class NKeyMap {
             this.keysMap[key] = primaryKey;
         }
 
-        const valuesMapKeys = Object.keys(this.valuesMap);
-
         // full map case
-        if (valuesMapKeys.length >= this.maxElements) {
-
+        if (!_.isNil(this.maxElements) && this.length >= this.maxElements) {
             // removing all ref keys
             const keysFromNkeyMapObject = this.valuesMap[0];
             for (let nkey in keysFromNkeyMapObject) {
@@ -48,11 +44,18 @@ module.exports = class NKeyMap {
             }
 
             // removing stored value
-            delete this.valuesMap[valuesMapKeys[0]];
-            
+            let firstPropertyKey = null;
+            for (let property in this.valuesMap) {
+                firstPropertyKey = property;
+                break;
+            }
+
+            delete this.valuesMap[firstPropertyKey];
+            this.length--;
         }
 
         this.valuesMap[primaryKey] = { keys, value };
+        this.length++;
     }
 
     clean() {
@@ -61,5 +64,10 @@ module.exports = class NKeyMap {
 
         delete this.valuesMap;
         this.valuesMap = {};
+        this.length = 0;
+    }
+
+    size() {
+        return this.length;
     }
 }
