@@ -67,6 +67,25 @@ describe('nkeymap', () => {
             assert.strictEqual(nkeymap.get('f'), 15);
         });
 
+        it('should remove values to respect max elements limit', () => {
+            const max = 99999;
+            const limit = 10;
+            const nmap = new NKeyMap(limit);
+            
+            for (let i = 0; i < max; i++) {
+                nmap.set([`k${i}`], i);
+                assert.strictEqual(nmap.size(), (i + 1) > limit ? limit : (i + 1), `Expected: ${(i + 1) > limit ? limit : (i + 1)}, Got: ${nmap.size()}`);
+            }
+
+            for (let i = 0; i < max; i++) {
+                if (i >= max - limit) {
+                    assert.strictEqual(nmap.get(`k${i}`), i, `Expected: ${i}, Got: ${nmap.get(`k${i}`)}`);
+                } else {
+                    assert.strictEqual(nmap.get(`k${i}`), null, `Expected: null, Got: ${nmap.get(`k${i}`)}`);
+                }
+            }
+        });
+
         it('should not remove values with undefined max elements limit', () => {
             const nmap = new NKeyMap();
 

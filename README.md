@@ -5,18 +5,18 @@ NKeyMap do not **duplicate values** and allows you to **quick access** your stor
 
 # Example
 ```js
-// Require librairy
+// Require library
 const  NKeyMap  =  require('nkeymap');
 
 // Instanciate map
 const  nKeyMap  =  new  NKeyMap();
 
-// Push value with multiple keys
+// Push values you want to store with multiple keys for each
 nKeyMap.set(['a', 'b', 'c'], 12); 
 nKeyMap.set(['d'], 'myStoredString');
 nKeyMap.set(['key1', 'f'], { myProp1: 52, myProp2: true });
 
-// Obtain stored value thanks to keys
+// Access stored values thanks to keys
 nKeyMap.get('a');       // === 12
 nKeyMap.get('b');       // === 12
 nKeyMap.get('c');       // === 12
@@ -26,14 +26,17 @@ nKeyMap.get('d');       // === 'myStoredString'
 nKeyMap.get('key1');    // === { myProp1: 52, myProp2: true }
 nKeyMap.get('f');       // === { myProp1: 52, myProp2: true }
 
-// Obtain map size
+// Get current map size
 nKeyMap.size();         // === 3
 
-// Clear map
+// Clear values from map
 nKeyMap.clean();
 
-// Re obtain map size
 nKeyMap.size();         // === 0
+
+// When removed or not existing value
+nKeyMap.get('a');               // === null
+nKeyMap.get('notExistskey');    // === null
 ```
 
 # Functions
@@ -42,6 +45,7 @@ Create a new multi-key map
 
 > *number* **maxElements** *(optional)* : Maximum length of the map. 
 > If the size of the map exceeds the fixed limit, the first added elements are removed from the map (FIFO)
+
 > By default, the map does not have a defined limit 
 
 ## get

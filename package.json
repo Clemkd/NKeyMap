@@ -1,7 +1,7 @@
 {
 	"name": "nkeymap",
-	"version": "1.0.2",
-	"description": "NKeyMap is a multi-key map where each stored value can be accessed thanks to a set of distinct keys.",
+	"version": "1.0.3",
+	"description": "NKeyMap is a multi-key map where each stored value can be accessed thanks to a set of distinct keys",
 	"main": "index.js",
 	"scripts": {
 		"test": "node ./node_modules/mocha/bin/mocha ./test/test.js"
