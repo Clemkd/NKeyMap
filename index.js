@@ -38,6 +38,10 @@ module.exports = class NKeyMap {
      * @param {*} value Value to add
      */
     set(keys, value) {
+        if (!Array.isArray(keys)) {
+            keys = [keys];
+        }
+
         const primaryKey = keys[0];
 
         for (let key of keys) {

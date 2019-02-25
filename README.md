@@ -1,7 +1,7 @@
 # NKeyMap
 
 NKeyMap is a multi-key map where each stored value can be accessed thanks to a set of distinct keys.
-NKeyMap do not **duplicate values** and allows you to **quick access** your stored objects.
+NKeyMap does not **duplicate values** and allows you to **quickly access** your stored objects.
 
 # Example
 ```js
@@ -13,7 +13,7 @@ const  nKeyMap  =  new  NKeyMap();
 
 // Push values you want to store with multiple keys for each
 nKeyMap.set(['a', 'b', 'c'], 12); 
-nKeyMap.set(['d'], 'myStoredString');
+nKeyMap.set('d', 'myStoredString');
 nKeyMap.set(['key1', 'f'], { myProp1: 52, myProp2: true });
 
 // Access stored values thanks to keys

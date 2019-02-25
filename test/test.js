@@ -58,7 +58,7 @@ describe('nkeymap', () => {
             nkeymap.set(['h', 'i'], { val: 16 });        
             nkeymap.set(['j', 'k', 'l'], "17");
             nkeymap.set(['keys14'], { l: 12, m: 64, y: [1, 2, 3] });
-            nkeymap.set(['a'], 0); 
+            nkeymap.set('a', 0); 
 
             assert.strictEqual(nkeymap.size(), 5);
             assert.strictEqual(nkeymap.get('removed'), null);
